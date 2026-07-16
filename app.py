@@ -1,48 +1,56 @@
 import streamlit as st
+from styles import inject_css
 
-# -------------------- Page Configuration --------------------
 st.set_page_config(
     page_title="UPI Fraud Detection",
     page_icon="💳",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+inject_css()
 
-# -------------------- Main Page --------------------
-st.title("💳 UPI Fraud Detection System")
-
+# -------------------- Hero --------------------
 st.markdown("""
-Welcome to the **UPI Fraud Detection System**.
+<div class="hero">
+    <div class="hero-eyebrow">Real-time transaction screening</div>
+    <h1>Every UPI transaction, scanned before it settles.</h1>
+    <p>A CatBoost classifier trained on the PaySim mobile-money dataset flags fraudulent
+    transactions in milliseconds — compare it against four other models, explore the data,
+    and try it on a live transaction below.</p>
+    <div class="radar"><div class="radar-dot"></div></div>
+</div>
+""", unsafe_allow_html=True)
 
-This application uses **Machine Learning** to identify whether a UPI transaction is **Fraudulent** or **Legitimate**.
+# -------------------- Nav cards --------------------
+col1, col2, col3, col4 = st.columns(4)
 
----
+with col1:
+    with st.container(border=True):
+        st.markdown("#### 🏠 Home")
+        st.caption("Project overview and objectives")
+        st.page_link("pages/1_Home.py", label="Open", icon="➡️")
 
-### 🚀 Features
-- 🔍 Predict fraudulent UPI transactions
-- 📊 Interactive dashboard with dataset insights
-- 🤖 CatBoost Machine Learning model
-- 📈 Model evaluation and performance analysis
+with col2:
+    with st.container(border=True):
+        st.markdown("#### 📊 Dashboard")
+        st.caption("Dataset stats and fraud distribution")
+        st.page_link("pages/2_Dashboard.py", label="Open", icon="➡️")
 
----
+with col3:
+    with st.container(border=True):
+        st.markdown("#### 🔍 Predict")
+        st.caption("Score a transaction in real time")
+        st.page_link("pages/3_Predict.py", label="Open", icon="➡️")
 
-### 📂 Navigate Using the Sidebar
+with col4:
+    with st.container(border=True):
+        st.markdown("#### ℹ️ About")
+        st.caption("Models, metrics, and tech stack")
+        st.page_link("pages/4_About.py", label="Open", icon="➡️")
 
-Select any page from the left sidebar:
-
-- 🏠 **Home** – Project overview
-- 📊 **Dashboard** – Dataset statistics and visualizations
-- 🔍 **Predict** – Predict fraud for a transaction
-- ℹ️ **About** – Project details and technologies
-
----
-
-### 🛠️ Technologies Used
-- Python
-- Pandas
-- Scikit-learn
-- CatBoost
-- Streamlit
-""")
-
-st.success("👈 Choose a page from the sidebar to get started.")
+st.write("")
+st.markdown('<span class="badge badge-teal">CatBoost · Best Model</span>'
+            '<span class="badge badge-neutral">PaySim Dataset</span>'
+            '<span class="badge badge-neutral">Scikit-learn</span>'
+            '<span class="badge badge-neutral">Streamlit</span>',
+            unsafe_allow_html=True)

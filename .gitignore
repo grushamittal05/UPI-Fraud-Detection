@@ -1,6 +1,7 @@
 # Ignore datasets
-data/raw/*.csv
-data/processed/*.csv
+data/raw/upi-dataset.csv
+data/processed/cleaned_upi.csv
+
 
 # Python
 __pycache__/
